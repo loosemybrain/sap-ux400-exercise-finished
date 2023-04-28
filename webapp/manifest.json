@@ -63,25 +63,28 @@
             "cozy": true
         },
         "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "sap.training.exc.i18n.i18n",
-                    "supportedLocales": [""],
-                    "fallbackLocale": ""
-                }
-            },
-            "": {
-                "dataSource": "mainService",
-                "settings": {
-                    "synchronizationMode": "None",
-                    "operationMode": "Server",
-                    "autoExpandSelect": true,
-                    "earlyRequests": true
-                }
+          "i18n": {
+            "type": "sap.ui.model.resource.ResourceModel",
+            "settings": {
+              "bundleName": "sap.training.exc.i18n.i18n",
+              "supportedLocales": [""],
+              "fallbackLocale": ""
             }
+         },
+          "": {
+            "dataSource": "mainService",
+            "settings": {
+              "synchronizationMode": "None",
+              "operationMode": "Server",
+              "autoExpandSelect": true,
+              "earlyRequests": true
+            }
+          }
+          
         },
+
         "handleValidation": true,
+        
         "resources": {
             "css": [
                 {
@@ -91,40 +94,47 @@
         },
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
-                "viewType": "XML",
-                "async": true,
-                "viewPath": "sap.training.exc.view",
-                "controlAggregation": "pages",
-                "controlId": "app"
+              "routerClass": "sap.m.routing.Router",
+              "viewType": "XML",
+              "async": true,
+              "viewPath": "sap.training.exc.view",
+              "controlAggregation": "pages",
+              "controlId": "app",
+                "bypassed": { 
+                    "target": [
+                        "notFound"
+                    ] 
+                }
             },
             "routes": [
-                {
-                    "name": "overview",
-                    "pattern": "",
-                    "target": [
-                        "overview"
-                    ]
+                { "name": "overview", 
+                "pattern": "",
+                 "target": ["overview"
+                 ] 
                 },
-                {
-                    "name": "detail",
-                    "pattern": "detail",
-                    "target": [
-                        "detail"
-                    ]
+                { "name": "detail", 
+                "pattern": "detail/{customerId}", 
+                "target": ["detail"
+                ] 
                 }
+
             ],
             "targets": {
-                "overview": {
-                    "viewId": "overview",
-                    "viewName": "Overview",
-                    "viewLevel": 1
-                },
-                "detail": {
-                    "viewId": "detail",
-                    "viewName": "Detail",
-                    "viewLevel": 2
-                }
+              "overview": {
+                "viewId": "overview",
+                "viewName": "Overview",
+                "viewLevel": 1
+              },
+              "detail": {
+                "viewId": "detail",
+                "viewName": "Detail",
+                "viewLevel": 2
+              },
+              "notFound": {
+                "viewId": "notFound",
+                "viewName": "NotFound",
+                "transition": "show"
+              }
             }
         },
         "rootView": {
